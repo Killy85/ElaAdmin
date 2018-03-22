@@ -23,7 +23,8 @@ def ipcount():
 def send_local_bl():
     bl_list = ["192.168.1.1", "192.168.1.2","192.168.1.3"]
     with open('./tmp/bl.txt', 'w+')as f:
-        return f.write(bl_list)
+        f.write("\n".join(bl_list))
+    return 'oui'
     
 
 
