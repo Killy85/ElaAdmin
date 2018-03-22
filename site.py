@@ -33,11 +33,18 @@ def get_commune_black_list():
         commun_bl = JSON.load(json_data)
     return "\n".join(commun_bl['blIP'])
 
-@app.route('/update_whitelist')
+@app.route('/update_whitelist', methods=['GET'])
 def update_whitelist():
     oui = open('./tmp/nginx.conf').readlines()
     oui_render = reduce( lambda x ,y : x + y , oui)
     return render_template('form-editor.html', placeholder = oui_render)
+
+@app.route('/update_whitelist', methods=['POST'])
+def update_whitelist_post():
+    with open('./tmp/nginx.conf', 'w') as f:
+        f.write(request.form['conf'])
+
+    return render_template('form-editor.html', placeholder = request.form['conf'])
 
 @app.errorhandler(404)
 def page_not_found(e):

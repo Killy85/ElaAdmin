@@ -26,7 +26,39 @@
     <!--[if lt IE 9]>
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
 <![endif]-->
+    <script type="text/javascript">
+        function post(path, params, method) {
+            method = method || "post"; // Set method to post by default if not specified.
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            for(var key in params) {
+                if(params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+            function handleIt() {
+                post('update_whitelist', {'conf' : document.getElementById('textValue').value}, 'POST')
+                alert('Document Posted');
+        }
+
+    </script>
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -146,6 +178,7 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="index.html">Ecommerce </a></li>
                                 <li><a href="index1.html">Analytics </a></li>
+                                <li><a href="update_whitelist">Update WhiteList </a></li>
                             </ul>
                         </li>
                         <li class="nav-label">Apps</li>
