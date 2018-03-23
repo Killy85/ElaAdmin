@@ -7,61 +7,40 @@ $( function () {
 	Morris.Area( {
 		element: 'extra-area-chart',
 		data: [ {
-				period: '2001',
-				iphone: 0,
-				imac: 0,
-				ibook: 90,
-				samsung: 0,
-				android: 0
+				period: '2018-03-20',
+				site1: 10,
+				site2: 25,
+				site3: 17,
+				site4: 31
         }, {
-				period: '2002',
-				iphone: 10,
-				imac: 60,
-				ibook: 40,
-				samsung: 80,
-				android: 120
+				period: '2018-03-21',
+				site1: 10,
+				site2: 25,
+				site3: 17,
+				site4: 31
         }, {
-				period: '2003',
-				iphone: 120,
-				imac: 10,
-				ibook: 90,
-				samsung: 30,
-				android: 50
+				period: '2018-03-22',
+				site1: 10,
+				site2: 25,
+				site3: 17,
+				site4: 31
         }, {
-				period: '2004',
-				iphone: 0,
-				imac: 0,
-				ibook: 120,
-				samsung: 0,
-				android: 0
+				period: '2018-03-23',
+				site1: 10,
+				site2: 25,
+				site3: 17,
+				site4: 31
         }, {
-				period: '2005',
-				iphone: 0,
-				imac: 0,
-				ibook: 0,
-				samsung: 150,
-				android: 0
-        }, {
-				period: '2006',
-				iphone: 160,
-				imac: 75,
-				ibook: 30,
-				samsung: 60,
-				android: 90
-        }, {
-				period: '2007',
-				iphone: 10,
-				imac: 120,
-				ibook: 40,
-				samsung: 60,
-				android: 30
+				period: '2018-03-23',
+				site1: 10,
+				site2: 25,
+				site3: 17,
+				site4: 31
         }
-
-
         ],
 		lineColors: [ '#26DAD2', '#fc6180', '#62d1f3', '#ffb64d', '#4680ff' ],
 		xkey: 'period',
-		ykeys: [ 'iphone', 'imac', 'ibook', 'samsung', 'android' ],
+		ykeys: [ 'site1', 'site2', 'site3', 'site4'],
 		labels: [ 'iphone', 'imac', 'ibook', 'samsung', 'android' ],
 		pointSize: 0,
 		lineWidth: 0,

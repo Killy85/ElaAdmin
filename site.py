@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request
 import os
 import json as JSON
+import pandas as pd
 
 root_dir = os.path.dirname(os.getcwd())
 
@@ -45,6 +46,29 @@ def update_whitelist_post():
         f.write(request.form['conf'])
 
     return render_template('form-editor.html', placeholder = request.form['conf'])
+
+@app.route('/see_basic_logs')
+def render_logs():
+    with open('./tmp/nginx.log', 'r') as f:
+        lines = f.readlines()
+        lines = map(lambda x : {'message' : x, 'level' : x[x.find("[")+1:x.find("]")]}, lines)
+        return render_template('ui-alert.html', messages = lines)
+
+@app.route('/see_access_logs')
+def render_access_logs():
+    with open('./tmp/nginx.access.log', 'r') as f:
+        lines = f.readlines()
+        lines = map(lambda x : {'message' : x[x.find("-"):len(x) -1], 'ip' : x[0:x.find("-")]}, lines)
+        return_dict = {}
+        for elem in lines:
+            if return_dict.has_key(elem['ip']):
+                return_dict[elem['ip']] = return_dict[elem['ip']] + elem.message
+            else:
+                return_dict[elem['ip']] = elem.message
+
+        return render_template('ui-alert.html', messages = lines)
+
+
 
 @app.errorhandler(404)
 def page_not_found(e):
