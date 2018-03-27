@@ -5,8 +5,7 @@ import mysql.connector
 
 application = Flask(__name__)
 
-#config_path = 'path/to/config.json'
-config_path = './config.json'
+config_path = '/etc/BDD/config.json'
 f = open(config_path, 'r')
 config_params = JSON.load(f)
 host = config_params['host']
