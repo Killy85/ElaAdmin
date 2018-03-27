@@ -25,7 +25,9 @@
                                 <div class="card-content">
                                     {% for message in messages%}
                                     <div class="alert alert-light">
-                                        {{message.message}}
+                                        {% for elem in messages%}
+                                            {{elem}}
+                                        {% endfor %}
                                     </div>
                                     {% endfor %}
                                 </div>
