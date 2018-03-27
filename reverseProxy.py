@@ -66,14 +66,15 @@ def update_whitelist_post():
 
 @application.route('/see_basic_logs')
 def render_logs():
-    with open('./tmp/nginx.log', 'r') as f:
+
+    with open('/var/log/nginx/error.log', 'r') as f:x
         lines = f.readlines()
         lines = map(lambda x : {'message' : x, 'level' : x[x.find("[")+1:x.find("]")]}, lines)
         return render_template('ui-alert.html', messages = lines)
 
 @application.route('/see_access_logs')
 def render_access_logs():
-    with open('./tmp/nginx.access.log', 'r') as f:
+    with open('/var/log/nginx/acess.log', 'r') as f:
         lines = f.readlines()
         lines = map(lambda x : {'message' : x[x.find("-"):len(x) -1], 'ip' : x[0:x.find("-")]}, lines)
         return_dict = {}
