@@ -50,15 +50,15 @@ def get_commune_black_list():
     conn.commit()
     return 'BlackList synchronized'
 
-@application.route('/update_whitelist', methods=['GET'])
+@application.route('/update_config', methods=['GET'])
 def update_whitelist():
     oui = open('./tmp/nginx.conf').readlines()
     oui_render = reduce( lambda x ,y : x + y , oui)
     return render_template('form-editor.html', placeholder = oui_render)
 
-@application.route('/update_whitelist', methods=['POST'])
+@application.route('/update_config', methods=['POST'])
 def update_whitelist_post():
-    with open('./tmp/nginx.conf', 'w') as f:
+    with open('/etc/csf/csf.conf', 'w') as f:
         f.write(request.form['conf'])
 
     return render_template('form-editor.html', placeholder = request.form['conf'])
